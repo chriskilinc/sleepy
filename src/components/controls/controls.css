@@ -1,0 +1,27 @@
+.controls {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.controls .control[visible=false] {
+    display: none;
+}
+
+.controls .control .btn {
+    width: 100%;
+    padding: 6px 12px;
+    background: var(--colorWhite);
+    color: var(--colorBlack);
+    font-size: 1rem;
+    border-radius: 6px;
+}
+
+.controls .control .btn:hover,
+.controls .btn:focus {
+    cursor: pointer;
+}
+
+.control p {
+    margin: 0;
+}
