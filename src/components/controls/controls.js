@@ -1,11 +1,11 @@
-import moment from "moment";
+import dayjs from 'dayjs';
 import './controls.css';
 
 export const Controls = (props) => {
     return (
         <section className='controls' >
             <div className='control' visible={(props.timeItems.length === 0).toString()}>
-                <p>if i go to bed {moment(props.selectedTime).format("HH:mm")}</p>
+                <p>if i go to bed at: <b>{dayjs(props.selectedTime).format("HH:mm")}</b></p>
                 <button className='btn' onClick={props.onSelectedBedtime}>calculate selected wake-up time</button>
             </div>
 
@@ -18,7 +18,6 @@ export const Controls = (props) => {
             </div>
 
             <div className='control' visible={(props.timeItems.length > 0).toString()}>
-                <br />
                 <button className='btn' onClick={props.onReset}>go back</button>
             </div>
         </section>
