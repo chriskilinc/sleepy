@@ -29,3 +29,11 @@
 .information-placeholder p { 
   margin: 0;
 }
+
+.u-fit-content {
+  width: fit-content;
+}
+
+.u-align-self-flex-end {
+  align-self: flex-end;
+}

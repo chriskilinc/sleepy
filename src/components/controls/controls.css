@@ -22,6 +22,11 @@
     cursor: pointer;
 }
 
+.control {
+    display: flex;
+    flex-direction: column;
+}
+
 .control p {
     margin: 0;
 }
