@@ -12,6 +12,7 @@ function App() {
   const [fallASleepTime, setfallASleepTime] = useState(15);   //  should be customizable 
   const [sleepCycles, setSleepCycles] = useState(6);
   const [calculatingBedtime, setCalculatingBedtime] = useState(false);
+  const [currentDescription, setCurrentDescription] = useState("");
 
   const calculateTimeItems = (time, subtract = false) => {
     const cycleTime = 90;
@@ -26,15 +27,26 @@ function App() {
   }
 
   const onSelectedCalculation = () => {
-    calculatingBedtime ? calculateTimeItems(selectedTime, true) : calculateTimeItems(selectedTime);
+    if (calculatingBedtime) {
+      calculateTimeItems(selectedTime, true);
+      setCurrentDescription(`If I want to wake up at: ${dayjs(selectedTime).format("HH:mm")} I should go to bed around:`)
+    } else {
+      calculateTimeItems(selectedTime);
+      setCurrentDescription(`If I go to bed at: ${dayjs(selectedTime).format("HH:mm")} I should wake up around:`)
+    }
   }
 
   const onCurrentBedtime = (e) => {
-    calculateTimeItems(new Date());
+    const currentTime = new Date();
+    calculateTimeItems(currentTime);
+    setCurrentDescription(`If I go to bed now at: ${dayjs(currentTime).format("HH:mm")}`)
   }
 
   const onReset = (e) => {
     setTimeItems([]);
+    setCurrentDescription("");
+    setSelectedTime(dayjs(new Date()));
+
   }
 
   return (
@@ -44,6 +56,7 @@ function App() {
           <img src={logo} className="logo" alt="Logo of a sleepy moon" />
           <h1>sleepy</h1>
           {(timeItems && timeItems.length === 0) && <LocalizedTimePicker value={selectedTime} setValue={setSelectedTime} />}
+          {(timeItems && timeItems.length !== 0) && <p className="u-text-align-center">{currentDescription}</p>}
           <TimeItems timeItems={timeItems} />
           <Controls timeItems={timeItems} selectedTime={selectedTime}
             onSelectedCalculation={onSelectedCalculation} onCurrentBedtime={onCurrentBedtime} onReset={onReset} checked={calculatingBedtime} setChecked={setCalculatingBedtime} />

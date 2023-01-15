@@ -19,7 +19,7 @@
   .time-item[recommended=true]{
     border-color: var(--colorGreen);
     color: var(--colorGreen);
-    flex-basis: 40%;
+    flex-basis: 45%;
   }
   .time-item .recommended-tooltip {
     display: none;
