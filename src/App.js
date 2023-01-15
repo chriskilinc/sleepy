@@ -13,22 +13,24 @@ function App() {
   const [sleepCycles, setSleepCycles] = useState(6);
   const [calculatingBedtime, setCalculatingBedtime] = useState(false);
 
-  const calculateWakeTime = (bedtime) => {
+  const calculateTimeItems = (time, subtract = false) => {
     const cycleTime = 90;
     const timeItems = [];
 
     for (let i = 0; i < sleepCycles; i++) {
-      timeItems.push(dayjs(bedtime).add((cycleTime * (i + 1)) + fallASleepTime, 'm').toDate());
+      subtract ?
+        timeItems.push(dayjs(time).subtract((cycleTime * (i + 1)) + fallASleepTime, 'm').toDate()) :
+        timeItems.push(dayjs(time).add((cycleTime * (i + 1)) + fallASleepTime, 'm').toDate());
     }
-    return timeItems;
+    setTimeItems(timeItems.reverse());
   }
 
   const onSelectedCalculation = () => {
-    calculatingBedtime ? console.log("TODO") : setTimeItems(calculateWakeTime(selectedTime).reverse());
+    calculatingBedtime ? calculateTimeItems(selectedTime, true) : calculateTimeItems(selectedTime);
   }
 
   const onCurrentBedtime = (e) => {
-    setTimeItems(calculateWakeTime(new Date()).reverse());
+    calculateTimeItems(new Date());
   }
 
   const onReset = (e) => {

@@ -5,11 +5,9 @@ import { CustomizedSwitches } from '../switch/switch';
 export const Controls = (props) => {
     return (
         <section className='controls' >
-            <div className="control" visible={(props.timeItems.length === 0).toString()}>
-                <CustomizedSwitches label={props.checked ? "calculate suggested bedtimes" : "calculate suggested wakeup-times"} checked={props.checked} setChecked={props.setChecked} />
-            </div>
-
             <div className='control' visible={(props.timeItems.length === 0).toString()}>
+                <CustomizedSwitches label={props.checked ? "calculate suggested bedtimes" : "calculate suggested wakeup-times"} checked={props.checked} setChecked={props.setChecked} />
+
                 <p>{props.checked ? "if i want to wake up at" : "if i go to bed at"} <b>{dayjs(props.selectedTime).format("HH:mm")}</b></p>
                 <button className='btn' onClick={props.onSelectedCalculation}>calculate when to {props.checked ? "go to bed" : "wake up"}</button>
             </div>
