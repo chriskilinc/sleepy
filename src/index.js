@@ -12,6 +12,11 @@ const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
+  typography: {
+    fontFamily: [
+      'Open Sans', "sans-serif"
+    ].join(','),
+  },
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
