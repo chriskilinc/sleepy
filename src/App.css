@@ -6,7 +6,6 @@
 
 .main {
   display: flex;
-  min-height: 100vh;
   align-items: center;
   flex-direction: column;
   color: var(--colorWhite);
@@ -17,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 20vh;
+  padding-top: 15vh;
   max-width: 375px;
   width: 100%;
 }
