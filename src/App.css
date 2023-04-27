@@ -16,7 +16,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding-top: 15vh; */
   max-width: 375px;
   width: 100%;
   position: absolute;
@@ -50,4 +49,8 @@
 
 .u-text-align-center {
   text-align: center;
+}
+
+.u-margin-vertical-small {
+  margin: 2rem 0;
 }

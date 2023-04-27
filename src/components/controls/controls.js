@@ -1,27 +1,29 @@
-import dayjs from 'dayjs';
 import './controls.css';
-import { CustomizedSwitches } from '../switch/switch';
 
 export const Controls = (props) => {
     return (
         <section className='controls' >
-            <div className='control' visible={(props.timeItems.length === 0).toString()}>
-                <CustomizedSwitches label={props.checked ? "calculate suggested bedtimes" : "calculate suggested wakeup-times"} checked={props.checked} setChecked={props.setChecked} />
-
-                <p>{props.checked ? "if i want to wake up at" : "if i go to bed at"} <b>{dayjs(props.selectedTime).format("HH:mm")}</b></p>
-                <button className='btn' onClick={props.onSelectedCalculation}>calculate when to {props.checked ? "go to bed" : "wake up"}</button>
+            <div className='control segmented' visible={(props.timeItems.length === 0).toString()}>
+                <button className='btn' onClick={props.onWakeUp}>
+                    <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M7.5 1.5v-1m0 13.99v-.998m6-5.997h1m-13 0h-1m2-4.996l-1-1m12 0l-1 1m-10 9.993l-1 1m12 0l-1-1m-2-4.997a2.999 2.999 0 01-3 2.998 2.999 2.999 0 113-2.998z" stroke="currentColor" strokeLinecap="square"></path></svg>
+                    Wake up
+                </button>
+                <button className='btn' onClick={props.onGoToBed}>
+                    <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M1.66 11.362A6.5 6.5 0 007.693.502a7 7 0 11-6.031 10.86z" stroke="currentColor" strokeLinejoin="round"></path></svg>
+                    Go to bed
+                </button>
             </div>
 
-            {/* TODO: add seperator here? */}
-            <br></br>
 
             <div className='control' visible={(props.timeItems.length === 0).toString()}>
-                <p>if i go to bed now</p>
-                <button className='btn' onClick={props.onCurrentBedtime}>calculate wake-up time</button>
+                <button className='btn' onClick={props.onCurrentBedtime}>If i go to bed now</button>
             </div>
 
             <div className='control' visible={(props.timeItems.length > 0).toString()}>
-                <button className='btn' onClick={props.onReset}>go back</button>
+                <button className='btn' onClick={props.onReset}>
+                    <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M6.5 2.499l-.354-.354-.353.354.353.353L6.5 2.5zm1-.5H7v1h.5v-1zM2 8.495v-.5H1v.5h1zM8.145.146l-1.999 2 .708.706L8.853.854 8.145.146zM6.146 2.852l2 1.999.707-.707-2-1.999-.707.707zM7.5 3C10.537 3 13 5.461 13 8.496h1A6.499 6.499 0 007.5 2v1zM13 8.495a5.499 5.499 0 01-5.5 5.496v1c3.589 0 6.5-2.909 6.5-6.496h-1zM7.5 13.99A5.499 5.499 0 012 8.495H1a6.499 6.499 0 006.5 6.496v-1z" fill="currentColor"></path></svg>
+                    go back
+                </button>
             </div>
         </section>
     )

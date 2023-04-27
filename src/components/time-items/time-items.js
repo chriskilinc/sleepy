@@ -3,7 +3,7 @@ import './time-items.css'
 
 export const TimeItems = (props) => {
     return (
-        <section className='time-items'>
+        <section className='time-items' visible={(props.timeItems && props.timeItems.length > 0).toString()}>
             {props.timeItems && props.timeItems.map((item, i) => {
                 const key = `time-item-${i}`;
                 const recommended = (i <= 1);
