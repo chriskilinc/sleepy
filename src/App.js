@@ -53,7 +53,7 @@ function App() {
       <main className='main'>
         <div className='container'>
           <img src={logo} className="logo" alt="Logo of a sleepy moon" />
-          <h1>sleepy</h1>
+          <h1 className="title">sleepy</h1>
           {(timeItems && timeItems.length === 0) && <LocalizedTimePicker value={selectedTime} setValue={setSelectedTime} />}
           <p className="u-text-align-center u-margin-vertical-small">{currentDescription}</p>
           <TimeItems timeItems={timeItems} />

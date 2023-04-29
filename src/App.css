@@ -35,6 +35,10 @@
   pointer-events: none;
 }
 
+.title {
+  font-family: 'Quicksand', sans-serif;
+}
+
 .information-placeholder p { 
   margin: 0;
 }
