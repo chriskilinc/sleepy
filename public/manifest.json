@@ -1,10 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "sleepy",
+  "name": "sleepy",
+  "description": "Sleep cycle calculator helping you find the perfect bedtime just for you, using a formula based on the body's natural rhythm.",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "32x32",
       "type": "image/x-icon"
     },
     {
@@ -18,8 +19,33 @@
       "sizes": "512x512"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "If i go to bed now",
+      "short_name": "Now",
+      "description": "If i go to bed now",
+      "url": "/now?source=pwa",
+      "icons": [{ "src": "/logo192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot.png",
+      "type": "image/png",
+      "sizes": "534x544",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot2.png",
+      "type": "image/png",
+      "sizes": "498x545",
+      "form_factor": "wide"
+    }
+  ],
   "start_url": ".",
+  "scope": "/",
+  "id": "/?source=pwa",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#121212",
+  "background_color": "#121212"
 }

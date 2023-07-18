@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import logo from './assets/sleeping.svg';
 import './App.css';
@@ -9,11 +9,31 @@ import { LocalizedTimePicker } from './components/time-picker/time-picker';
 const DESC_DEFAULT = "This is the time I want to: ";
 
 function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+
   const [timeItems, setTimeItems] = useState([]);
   const [selectedTime, setSelectedTime] = useState(dayjs(new Date()));
   const [fallASleepTime, setfallASleepTime] = useState(15);   //  IDEA: should be customizable 
   const [sleepCycles, setSleepCycles] = useState(6);
   const [currentDescription, setCurrentDescription] = useState(DESC_DEFAULT);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      setIsPageLoaded(true);
+      handleShortcuts();
+    }
+  }, [isLoaded]);
+
+  const handleShortcuts = () => {
+    //  Shortcuts are defined in manifest.json for pwa functionallity
+    //  Currently there is only one shortcut "/now"
+    window.location.pathname.includes("now") && onCurrentBedtime();
+  }
 
   const calculateTimeItems = (time, subtract = false) => {
     const cycleTime = 90;
