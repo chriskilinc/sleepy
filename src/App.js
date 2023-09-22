@@ -10,8 +10,6 @@ const DESC_DEFAULT = "This is the time I want to: ";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isPageLoaded, setIsPageLoaded] = useState(false);
-
   const [timeItems, setTimeItems] = useState([]);
   const [selectedTime, setSelectedTime] = useState(dayjs(new Date()));
   const [fallASleepTime, setfallASleepTime] = useState(15);   //  IDEA: should be customizable 
@@ -24,7 +22,6 @@ function App() {
 
   useEffect(() => {
     if (isLoaded) {
-      setIsPageLoaded(true);
       handleShortcuts();
     }
   }, [isLoaded]);
