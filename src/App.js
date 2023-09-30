@@ -78,6 +78,9 @@ function App() {
             onCurrentBedtime={onCurrentBedtime} onReset={onReset} />
         </div>
       </main>
+      <footer className="contact">
+        <a href="https://www.chriskilinc.com" target="_blank" rel="noreferrer noopener dofollow">chriskilinc.com</a>
+      </footer>
     </div>
   );
 }
