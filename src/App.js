@@ -76,6 +76,7 @@ function App() {
           <TimeItems timeItems={timeItems} />
           <Controls timeItems={timeItems} selectedTime={selectedTime} onWakeUp={onWakeUp} onGoToBed={onGoToBed}
             onCurrentBedtime={onCurrentBedtime} onReset={onReset} />
+          {(timeItems && timeItems.length != 0) && <p className="u-text-align-center u-margin-vertical-smaller">We have added the average time to fall asleep, which is 15 minutes</p>}
         </div>
       </main>
       <footer className="contact">

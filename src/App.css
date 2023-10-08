@@ -10,7 +10,6 @@
   padding: 0 1rem;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
   color: var(--colorWhite);
 }
 
@@ -29,6 +28,7 @@
   align-items: center;
   max-width: 375px;
   width: 100%;
+  margin-top: 25vh;
 }
 
 @media only screen and (max-width: 400px)  {
@@ -63,4 +63,8 @@
 
 .u-margin-vertical-small {
   margin: 2rem 0;
+}
+
+.u-margin-vertical-smaller {
+  margin: 1rem 0;
 }
