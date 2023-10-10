@@ -28,12 +28,21 @@
   align-items: center;
   max-width: 375px;
   width: 100%;
-  margin-top: 25vh;
+  margin-top: 20vh;
 }
 
 @media only screen and (max-width: 400px)  {
   .container {
     max-width: 330px;
+  }
+}
+
+@media only screen and (max-height: 700px)  {
+  .main {
+    justify-content: center;
+  }
+  .container {
+    margin-top: 0;
   }
 }
 
@@ -63,6 +72,10 @@
 
 .u-margin-vertical-small {
   margin: 2rem 0;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 2rem;
 }
 
 .u-margin-vertical-smaller {

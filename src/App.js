@@ -5,6 +5,7 @@ import './App.css';
 import { Controls } from './components/controls/controls';
 import { TimeItems } from './components/time-items/time-items';
 import { LocalizedTimePicker } from './components/time-picker/time-picker';
+import Banner from './components/adsterra-banner-1/banner';
 
 const DESC_DEFAULT = "This is the time I want to: ";
 
@@ -69,6 +70,7 @@ function App() {
     <div className="app">
       <main className='main'>
         <div className='container'>
+          <Banner />
           <img src={logo} className="logo" alt="Logo of a sleepy moon" width="128px" height="128px" />
           <h1 className="title">feeling sleepy?</h1>
           {(timeItems && timeItems.length === 0) && <LocalizedTimePicker value={selectedTime} setValue={setSelectedTime} />}
