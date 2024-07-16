@@ -1,6 +1,5 @@
 import "./text-button.css";
 export const TextButton = (props) => {
-  console.log("props", props);
   return (
     <button className="text-button" onClick={props.onClick}>
       <svg

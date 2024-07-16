@@ -22,6 +22,12 @@ export const Controls = () => {
     setChangeSleepOnsetTime(!changeSleepOnsetTime);
   };
 
+  const onSleepOnsetTimeChange = (val) => {
+    if (val >= 0 && val <= 60) {
+      setSleepOnsetTime(val);
+    }
+  };
+
   return (
     <section className="controls">
       <div
@@ -72,13 +78,15 @@ export const Controls = () => {
         <div className="sleep-onset">
           {changeSleepOnsetTime ? (
             <>
-              <p>Change time it takes  to fall asleep?</p>
+              <p>Change time it takes to fall asleep?</p>
               <CustomNumberInput
                 aria-label="Sleep onset latency in minutes"
                 placeholder="Type your sleep onset latency in minutes"
                 label="Sleep onset latency"
                 value={sleepOnsetTime}
-                onChange={(event, val) => setSleepOnsetTime(val)}
+                min={0}
+                max={60}
+                onChange={(event, val) => onSleepOnsetTimeChange(val)}
               />
             </>
           ) : (
