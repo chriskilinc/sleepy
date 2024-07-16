@@ -1,33 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { TimeProvider } from "./TimeContext";
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
   },
   typography: {
-    fontFamily: [
-      'Open Sans', "sans-serif"
-    ].join(','),
+    fontFamily: ["Open Sans", "sans-serif"].join(","),
   },
 });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <App />
+      <TimeProvider>
+        <App />
+      </TimeProvider>
     </ThemeProvider>
-
   </React.StrictMode>
 );
 
@@ -37,8 +35,10 @@ root.render(
 reportWebVitals();
 
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('/sw.js').then(function (registration) {
-  }).catch(function (error) {
-    console.log('ServiceWorker registration failed:', error);
-  });
+  navigator.serviceWorker
+    .register("/sw.js")
+    .then(function (registration) {})
+    .catch(function (error) {
+      console.log("ServiceWorker registration failed:", error);
+    });
 }
