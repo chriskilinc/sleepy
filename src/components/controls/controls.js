@@ -1,6 +1,8 @@
 import "./controls.css";
 import { useTimeContext } from "../../TimeContext";
 import { CustomNumberInput } from "../number-input/number-input";
+import { useState } from "react";
+import { TextButton } from "../text-button/text-button";
 
 export const Controls = () => {
   const {
@@ -11,7 +13,14 @@ export const Controls = () => {
     onReset,
     sleepOnsetTime,
     setSleepOnsetTime,
+    sleepOnsetTimeDefault,
   } = useTimeContext();
+
+  const [changeSleepOnsetTime, setChangeSleepOnsetTime] = useState(false);
+
+  const onChangeSleepOnsetChange = () => {
+    setChangeSleepOnsetTime(!changeSleepOnsetTime);
+  };
 
   return (
     <section className="controls">
@@ -61,14 +70,29 @@ export const Controls = () => {
 
       {timeItems && timeItems.length === 0 && (
         <div className="sleep-onset">
-          <p>Time to fall asleep?</p>
-          <CustomNumberInput
-            aria-label="Sleep onset latency in minutes"
-            placeholder="Type your sleep onset latency in minutes"
-            label="Sleep onset latency"
-            value={sleepOnsetTime}
-            onChange={(event, val) => setSleepOnsetTime(val)}
-          />
+          {changeSleepOnsetTime ? (
+            <>
+              <p>Change time it takes  to fall asleep?</p>
+              <CustomNumberInput
+                aria-label="Sleep onset latency in minutes"
+                placeholder="Type your sleep onset latency in minutes"
+                label="Sleep onset latency"
+                value={sleepOnsetTime}
+                onChange={(event, val) => setSleepOnsetTime(val)}
+              />
+            </>
+          ) : (
+            <div>
+              <p>We will add the average time to fall asleep</p>
+              <p>
+                <span>which is </span>
+                <TextButton
+                  value={`${sleepOnsetTimeDefault} minutes`}
+                  onClick={onChangeSleepOnsetChange}
+                />
+              </p>
+            </div>
+          )}
         </div>
       )}
 

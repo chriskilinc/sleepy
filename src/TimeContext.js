@@ -2,12 +2,14 @@ import { createContext, useContext, useState } from "react";
 import dayjs from "dayjs";
 
 const TimeContext = createContext({});
-const DESC_DEFAULT = "This is the time I want to: ";
 
 export const TimeProvider = ({ children }) => {
+  const sleepOnsetTimeDefault = 15;
+  const DESC_DEFAULT = "This is the time I want to: ";
+
   const [currentDescription, setCurrentDescription] = useState(DESC_DEFAULT);
   const [selectedTime, setSelectedTime] = useState(dayjs(new Date()));
-  const [sleepOnsetTime, setSleepOnsetTime] = useState(15); //  IDEA: should be customizable
+  const [sleepOnsetTime, setSleepOnsetTime] = useState(sleepOnsetTimeDefault); //  IDEA: should be customizable
   const [timeItems, setTimeItems] = useState([]);
   const [sleepCycles, setSleepCycles] = useState(6);
 
@@ -69,6 +71,7 @@ export const TimeProvider = ({ children }) => {
       value={{
         sleepOnsetTime,
         setSleepOnsetTime,
+        sleepOnsetTimeDefault,
         onCurrentBedtime,
         onReset,
         onGoToBed,
@@ -77,7 +80,7 @@ export const TimeProvider = ({ children }) => {
         setCurrentDescription,
         timeItems,
         selectedTime,
-        setSelectedTime
+        setSelectedTime,
       }}
     >
       {children}

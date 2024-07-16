@@ -54,8 +54,7 @@ function App() {
           <Controls />
           {timeItems && timeItems.length !== 0 && (
             <div className="u-text-align-center u-margin-vertical-smaller">
-              <p>We have added a sleep onset latency of</p>
-              <p>{sleepOnsetTime} minutes</p>
+              <p>Included time to fall asleep of {sleepOnsetTime} minutes</p>
             </div>
           )}
         </div>
