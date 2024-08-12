@@ -9,6 +9,7 @@ export const TimeProvider = ({ children }) => {
 
   const [currentDescription, setCurrentDescription] = useState(DESC_DEFAULT);
   const [selectedTime, setSelectedTime] = useState(dayjs(new Date()));
+  const [time, setTime] = useState(dayjs(new Date()));
   const [sleepOnsetTime, setSleepOnsetTime] = useState(sleepOnsetTimeDefault); //  IDEA: should be customizable
   const [timeItems, setTimeItems] = useState([]);
   const [sleepCycles, setSleepCycles] = useState(6);
@@ -64,6 +65,7 @@ export const TimeProvider = ({ children }) => {
   const onReset = (e) => {
     setTimeItems([]);
     setCurrentDescription(DESC_DEFAULT);
+    console.log("location",window.location) // TODO
   };
 
   return (
@@ -81,6 +83,9 @@ export const TimeProvider = ({ children }) => {
         timeItems,
         selectedTime,
         setSelectedTime,
+        time,
+        setTime,
+        sleepCycles
       }}
     >
       {children}

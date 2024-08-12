@@ -7,6 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { TimeProvider } from "./TimeContext";
+import { ErrorPage } from "./error-page";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const darkTheme = createTheme({
   palette: {
@@ -17,6 +20,24 @@ const darkTheme = createTheme({
   },
 });
 
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <App />,
+//     errorElement: <ErrorPage />,
+//   },
+//   {
+//     path: "/wake-up/:time",
+//     element: <App />,
+//     errorElement: <ErrorPage />,
+//   },
+//   {
+//     path: "/go-to-bed/:time",
+//     element: <App />,
+//     errorElement: <ErrorPage />,
+//   },
+// ]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -24,6 +45,7 @@ root.render(
       <CssBaseline />
       <TimeProvider>
         <App />
+        {/* <RouterProvider router={router} /> */}
       </TimeProvider>
     </ThemeProvider>
   </React.StrictMode>
