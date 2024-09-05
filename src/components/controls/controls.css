@@ -3,10 +3,7 @@
     flex-direction: column;
     width: 100%;
     gap: 1rem;
-}
-
-.controls .control[visible=false] {
-    display: none;
+    margin-bottom: 1rem;
 }
 
 .controls .control .btn {
@@ -39,10 +36,4 @@
 .control.segmented {
     flex-direction: row;
     gap: 1rem;
-}
-
-.sleep-onset {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
 }

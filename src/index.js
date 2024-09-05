@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { TimeProvider } from "./TimeContext";
+
 
 const darkTheme = createTheme({
   palette: {
@@ -16,6 +16,7 @@ const darkTheme = createTheme({
     fontFamily: ["Open Sans", "sans-serif"].join(","),
   },
 });
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -37,7 +38,7 @@ reportWebVitals();
 if (navigator.serviceWorker) {
   navigator.serviceWorker
     .register("/sw.js")
-    .then(function (registration) {})
+    .then(function (registration) { })
     .catch(function (error) {
       console.log("ServiceWorker registration failed:", error);
     });
