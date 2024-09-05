@@ -24,7 +24,7 @@
       "name": "If i go to bed now",
       "short_name": "Now",
       "description": "If i go to bed now",
-      "url": "/now?source=pwa",
+      "url": "/sleep?source=pwa",
       "icons": [{ "src": "/logo192.png", "sizes": "192x192" }]
     }
   ],
