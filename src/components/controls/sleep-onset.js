@@ -5,7 +5,8 @@ import { TextButton } from "../text-button/text-button";
 import "./controls.css";
 
 export const SleepOnset = () => {
-  const { sleepOnsetTime, setSleepOnsetTime, sleepOnsetTimeDefault } =
+  // TODO: Save sleep onset time to local storage
+  const { sleepOnsetTime, setSleepOnsetTime } =
     useTimeContext();
 
   const [changeSleepOnsetTime, setChangeSleepOnsetTime] = useState(false);
@@ -25,6 +26,8 @@ export const SleepOnset = () => {
       display: "flex",
       justifyContent: "space-evenly",
       alignItems: "center",
+      gap: "1rem",
+      width: "100%",
     }}>
       {changeSleepOnsetTime ? (
         <>
@@ -42,10 +45,10 @@ export const SleepOnset = () => {
       ) : (
         <div>
           <p>We will add the average time to fall asleep</p>
-          <p>
-            <span>which is </span>
+          <p style={{ whiteSpace: "pre" }}>
+            <span>which is  </span>
             <TextButton
-              value={`${sleepOnsetTimeDefault} minutes`}
+              value={`${sleepOnsetTime} minutes`}
               onClick={onChangeSleepOnsetChange}
             />
           </p>

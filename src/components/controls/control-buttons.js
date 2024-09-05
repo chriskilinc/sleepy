@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 
 export const ControlButtons = () => {
-  const { onWakeUp, onGoToBed, onCurrentBedtime, selectedTime } =
+  const { selectedTime } =
     useTimeContext();
-  console.log("selectedTime", selectedTime);
 
   const getTime = () => {
     return encodeURIComponent(dayjs(selectedTime).format("HH:mm"));
@@ -16,7 +15,7 @@ export const ControlButtons = () => {
     <div className="controls">
       <div className="control segmented">
         <Link
-          to={`/go-to-bed/${getTime()}`}
+          to={`/sleep/${getTime()}`}
           state={{ test: "testing" }}
           className="btn"
         >
@@ -35,7 +34,7 @@ export const ControlButtons = () => {
           </svg>
           Go to bed
         </Link>
-        <Link to={"/wake-up"} className="btn">
+        <Link to={`/wake/${getTime()}`} className="btn">
           <svg
             viewBox="0 0 15 15"
             fill="none"
@@ -53,12 +52,9 @@ export const ControlButtons = () => {
         </Link>
       </div>
       <div className="control">
-        <Link to={`/go-to-bed`} className="btn">
+        <Link to={`/sleep`} className="btn">
           If i go to bed now
         </Link>
-        {/* <button className="btn" onClick={onCurrentBedtime}>
-          If i go to bed now
-        </button> */}
       </div>
     </div>
   );

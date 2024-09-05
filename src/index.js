@@ -3,13 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { TimeProvider } from "./TimeContext";
-import { ErrorPage } from "./error-page";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const darkTheme = createTheme({
   palette: {
@@ -20,23 +17,6 @@ const darkTheme = createTheme({
   },
 });
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     errorElement: <ErrorPage />,
-//   },
-//   {
-//     path: "/wake-up/:time",
-//     element: <App />,
-//     errorElement: <ErrorPage />,
-//   },
-//   {
-//     path: "/go-to-bed/:time",
-//     element: <App />,
-//     errorElement: <ErrorPage />,
-//   },
-// ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -45,7 +25,6 @@ root.render(
       <CssBaseline />
       <TimeProvider>
         <App />
-        {/* <RouterProvider router={router} /> */}
       </TimeProvider>
     </ThemeProvider>
   </React.StrictMode>
@@ -59,7 +38,7 @@ reportWebVitals();
 if (navigator.serviceWorker) {
   navigator.serviceWorker
     .register("/sw.js")
-    .then(function (registration) {})
+    .then(function (registration) { })
     .catch(function (error) {
       console.log("ServiceWorker registration failed:", error);
     });

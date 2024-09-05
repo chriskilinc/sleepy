@@ -2,16 +2,43 @@ import dayjs from "dayjs";
 import "./time-items.css";
 import { useTimeContext } from "../../TimeContext";
 
-export const TimeItems = () => {
-  const { timeItems } = useTimeContext();
+const calculateTimeItems = (time, sleepCycles, sleepOnsetTime, subtract = false) => {
+  const cycleTime = 90;
+  const timeItems = [];
+
+  for (let i = 0; i < sleepCycles; i++) {
+    subtract
+      ? timeItems.push(
+        dayjs(time)
+          .subtract(cycleTime * (i + 1) + sleepOnsetTime, "m")
+          .toDate()
+      )
+      : timeItems.push(
+        dayjs(time)
+          .add(cycleTime * (i + 1) + sleepOnsetTime, "m")
+          .toDate()
+      );
+  }
+  return timeItems.reverse();
+};
+
+export const TimeItems = ({ time, subtract }) => {
+  const { sleepCycles, sleepOnsetTime } = useTimeContext();
+
+  console.log("time items - TIME:", time);
+  if (!time) {
+    console.log("NO TIME");
+    return null;
+  }
+
+  const items = calculateTimeItems(time, sleepCycles, sleepOnsetTime, subtract);
 
   return (
     <section
       className="time-items"
-      visible={(timeItems && timeItems.length > 0).toString()}
     >
-      {timeItems &&
-        timeItems.map((item, i) => {
+      {items &&
+        items.map((item, i) => {
           const key = `time-item-${i}`;
           const recommended = i <= 1;
 
@@ -30,4 +57,4 @@ export const TimeItems = () => {
         })}
     </section>
   );
-};
+}

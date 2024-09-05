@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
 import logo from "./assets/sleeping.svg";
 import "./App.css";
-// import { Controls } from "./components/controls/controls";
 import { TimeItems } from "./components/time-items/time-items";
 import { LocalizedTimePicker } from "./components/time-picker/time-picker";
 import { useTimeContext } from "./TimeContext";
@@ -13,48 +11,22 @@ import {
 import { ErrorPage } from "./error-page";
 import { ControlButtons } from "./components/controls/control-buttons";
 import { SleepOnset } from "./components/controls/sleep-onset";
+import { GoBackButton } from "./components/controls/go-back-button";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-dayjs.extend(customParseFormat); // try this.
-
-const calculateTimeItems = (time, sleepCycles, sleepOnsetTime, subtract = false, ) => {
-  const cycleTime = 90;
-  const timeItems = [];
-  console.log("sleepCycles calculate:", sleepCycles);
-
-  for (let i = 0; i < sleepCycles; i++) {
-    subtract
-      ? timeItems.push(
-          dayjs(time)
-            .subtract(cycleTime * (i + 1) + sleepOnsetTime, "m")
-            .toDate()
-        )
-      : timeItems.push(
-          dayjs(time)
-            .add(cycleTime * (i + 1) + sleepOnsetTime, "m")
-            .toDate()
-        );
-  }
-  return timeItems.reverse();
-};
+dayjs.extend(customParseFormat);
 
 const InitialSection = () => {
   const {
-    currentDescription,
-    onCurrentBedtime,
     selectedTime,
     setSelectedTime,
-    timeItems,
-    sleepOnsetTime,
-    time,
-    setTime,
   } = useTimeContext();
 
   return (
     <>
       <LocalizedTimePicker value={selectedTime} setValue={setSelectedTime} />
       <p className="u-text-align-center u-margin-vertical-small">
-        {currentDescription}
+        This is the time I want to:
       </p>
       <ControlButtons />
       <SleepOnset />
@@ -62,78 +34,53 @@ const InitialSection = () => {
   );
 };
 
-const GoToBed = () => {
+const CalculationSection = ({ subtract }) => {
+  // subtract: true = wake up, false = go to bed
   let { time: timeParam } = useParams();
   const {
-    currentDescription,
-    onCurrentBedtime,
-    selectedTime,
-    setSelectedTime,
-    // timeItems,
     sleepOnsetTime,
-    setTime,
-    onGoToBed,
-    sleepCycles,
   } = useTimeContext();
 
-  console.log("sleepCycles:", sleepCycles);
-
-  
-
-  console.log("time param:", timeParam);
-
+  let noTimeParam = false;  // example: "If I go to bed now"
   if (!timeParam) {
+    noTimeParam = true;
     timeParam = dayjs().format("HH:mm");
-    console.log("setting new time:", timeParam);
   }
 
-  const timeDecoded = decodeURIComponent(timeParam);
-  console.log("time decoded:", timeDecoded);
+  let timeDecoded = decodeURIComponent(timeParam);
 
-  const timeObject = dayjs(timeDecoded, "HH:mm");
-  console.log("time dayjs timeObject:", timeObject);
-
-  const timeFormatted = timeObject.format("HH:mm");
-
-  const timeItems = calculateTimeItems(timeObject, sleepCycles, sleepOnsetTime);
-  console.log("timeItems:", timeItems);
-  
+  let timeObject;
+  if (!timeParam || !timeDecoded) {
+    // TODO: handle this better
+    timeObject = dayjs().format("HH:mm");
+  } else {
+    timeObject = dayjs(timeDecoded, "HH:mm");
+  }
 
   return (
     <>
-      <p className="u-text-align-center u-margin-vertical-small">
-        If I go to bed at <span>{timeObject.format("HH:mm")}</span> I should
-        wake up around..
-      </p>
+      {subtract ?
+        <p className="u-text-align-center u-margin-vertical-small">
+          If I want to wake up at <span>{timeObject.format("HH:mm")}</span> I should go to bed around..
+        </p>
+        :
+        <p className="u-text-align-center u-margin-vertical-small">
+          If I go to bed {noTimeParam && (<span>now</span>)} at <span>{timeObject.format("HH:mm")}</span> I should
+          wake up around..</p>
+      }
 
-      <TimeItems/>
+      <TimeItems time={timeObject} subtract={subtract} />
+      <div className='controls'>
+        <GoBackButton />
+      </div>
+      <div className="u-text-align-center u-margin-vertical-smaller">
+        <p>Included time to fall asleep of {sleepOnsetTime} minutes</p>
+      </div>
     </>
   );
 };
 
 function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const {
-    currentDescription,
-    onCurrentBedtime,
-    selectedTime,
-    setSelectedTime,
-    timeItems,
-    sleepOnsetTime,
-  } = useTimeContext();
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
-  useEffect(() => {
-    if (isLoaded) {
-      //  Shortcuts are defined in manifest.json for pwa functionallity
-      //  Currently there is only one shortcut "/now"
-      window.location.pathname.includes("now") && onCurrentBedtime();
-    }
-  }, [isLoaded]);
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -141,13 +88,13 @@ function App() {
       errorElement: <ErrorPage />,
     },
     {
-      path: "/wake-up/:time?",
-      element: <p>Wake up time items</p>,
+      path: "/wake/:time?",
+      element: <CalculationSection subtract={true} />,
       errorElement: <ErrorPage />,
     },
     {
-      path: "/go-to-bed/:time?",
-      element: <GoToBed />,
+      path: "/sleep/:time?",
+      element: <CalculationSection subtract={false} />,
       errorElement: <ErrorPage />,
     },
   ]);
@@ -165,26 +112,7 @@ function App() {
           />
           <h1 className="title">feeling sleepy?</h1>
 
-          {/* Route here */}
           <RouterProvider router={router} />
-
-          {/* {timeItems && timeItems.length === 0 && (
-            <LocalizedTimePicker
-              value={selectedTime}
-              setValue={setSelectedTime}
-            />
-          )}
-          <p className="u-text-align-center u-margin-vertical-small">
-            {currentDescription}
-          </p>
-          <TimeItems />
-          <Controls />
-          {timeItems && timeItems.length !== 0 && (
-            <div className="u-text-align-center u-margin-vertical-smaller">
-              <p>Included time to fall asleep of {sleepOnsetTime} minutes</p>
-            </div>
-          )} */}
-          {/* Stop route */}
         </div>
       </main>
       <footer className="contact">

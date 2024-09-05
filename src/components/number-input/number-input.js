@@ -61,11 +61,10 @@ const StyledInputRoot = styled("div")(
   color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
   background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
   border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 4px ${
-    theme.palette.mode === "dark" ? "rgba(0,0,0, 0.5)" : "rgba(0,0,0, 0.05)"
-  };
+  box-shadow: 0px 2px 4px ${theme.palette.mode === "dark" ? "rgba(0,0,0, 0.5)" : "rgba(0,0,0, 0.05)"
+    };
   display: grid;
-  grid-template-columns: 1fr 19px;
+  grid-template-columns: 1fr 20px;
   grid-template-rows: 1fr 1fr;
   overflow: hidden;
   column-gap: 8px;
@@ -73,8 +72,7 @@ const StyledInputRoot = styled("div")(
 
   &.${numberInputClasses.focused} {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${
-      theme.palette.mode === "dark" ? blue[700] : blue[200]
+    box-shadow: 0 0 0 3px ${theme.palette.mode === "dark" ? blue[700] : blue[200]
     };
   }
 
