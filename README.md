@@ -6,8 +6,8 @@ Sleep cycle calculator helping you find the perfect bedtime just for you, using 
 
 Try it out at [sleepingcycles.com](https://www.sleepingcycles.com/)
 
-![sleepingcycles landing page](./public/screenshot3.png)
-![sleepingcycles wake up page](./public/screenshot4.png)
+![sleepingcycles landing page](./public/screenshot3.PNG)
+![sleepingcycles wake up page](./public/screenshot4.PNG)
 
 
 ## Running locally
