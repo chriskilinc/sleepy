@@ -109,6 +109,7 @@ function App() {
             alt="Logo of a sleepy moon"
             width="128px"
             height="128px"
+            title='Logo of a sleepy moon'
           />
           <h1 className="title">feeling sleepy?</h1>
 
