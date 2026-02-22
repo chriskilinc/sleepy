@@ -18,4 +18,3 @@ yarn start
 ```
 
 
-Consider buying me a [coffee](https://ko-fi.com/cloudychris) if this has helped you sleep better! 
